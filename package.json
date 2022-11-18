@@ -1,7 +1,7 @@
 {
-  "name": "ts-jsonapi",
-  "version": "2.1.3",
-  "description": "JSON API (De) Serializer in Typescript",
+  "name": "@c-bonucci/ts-jsonapi",
+  "version": "1.0.0",
+  "description": "CB - JSON API (De) Serializer in Typescript",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",

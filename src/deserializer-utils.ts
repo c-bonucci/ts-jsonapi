@@ -97,6 +97,21 @@ export class DeserializerUtils {
       });
       return dest;
   }
+  
+  private extractMeta(from: any):any {
+    if (!from.meta) { return; }
+    
+    let dest: any = {};
+    const meta: {[key: string]:any} = {};
+
+    Object.keys(from.meta)
+    .map((key: string) => {
+      let value = from.meta[key];
+      meta[this.keyForAttribute(key)] = value;
+    })
+    dest.meta = meta;
+    return dest;
+  };
 
   private keyForAttribute(attribute: any): any{
     if (_.isPlainObject(attribute)) {
@@ -129,21 +144,6 @@ export class DeserializerUtils {
     let valueForRelationship = this.getValueForRelationship(relationshipData, included);
     return valueForRelationship;
   }
-
-  private extractMeta = (from: any) => {
-    if (!from.meta) { return; }
-    
-    let dest: any = {};
-    const meta: {[key: string]:any} = {};
-
-    Object.keys(from.meta)
-    .map((key: string) => {
-      let value = from.meta[key];
-      meta[this.keyForAttribute(key)] = value;
-    })
-    dest.meta = meta;
-    return dest;
-  };
 
   perform(): any {
     return _.extend(this.extractAttributes(this.data), this.extractRelationships(this.data), this.extractMeta(this.data));

@@ -15,3 +15,9 @@ Current implementation passes all tests from [jsonapi-serializer](https://github
 ```bash
 $ npm run test
 ```
+
+----
+
+## Fork
+
+I forked from [ts-jsonapi](https://github.com/mohuk/ts-jsonapi) because i needed the `Deserializer` to include the meta parameters too.
