@@ -19,7 +19,7 @@
     "typescript",
     "jsonapi"
   ],
-  "author": "Mohammad Umair Khan <mohammad.umair.k@gmail.com>",
+  "author": "Claudio Bonucci",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mohuk/ts-jsonapi/issues"
