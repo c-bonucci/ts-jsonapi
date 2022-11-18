@@ -783,4 +783,46 @@ describe('JSON API Deserializer', function () {
       });
     });
   });
+
+  describe('Includes meta inside each element', function () {
+    it('should return attributes and meta', function (done) {
+      var dataSet = {
+        data: [{
+          type: 'users',
+          id: '54735750e16638ba1eee59cb',
+          attributes: { 'first-name': 'Sandro', 'last-name': 'Munda' },
+          meta: { 'size': '123', 'can-fly': true }
+        }, {
+          type: 'users',
+          id: '5490143e69e49d0c8f9fc6bc',
+          attributes: { 'first-name': 'Lawrence', 'last-name': 'Bennett' },
+          meta: { 'size': '321', 'can-fly': false }
+        }]
+      };
+
+      var json = new JSONAPIDeserializer({keyForAttribute: 'camelCase'}).deserialize(dataSet);
+      expect(json).to.be.an('array').with.length(2);
+      expect(json[0]).to.be.eql({
+        id: '54735750e16638ba1eee59cb',
+        'firstName': 'Sandro',
+        'lastName': 'Munda',
+        meta: {
+          size: "123",
+          canFly: true
+        }
+      });
+      expect(json[1]).to.be.eql({
+        id: '5490143e69e49d0c8f9fc6bc',
+        'firstName': 'Lawrence',
+        'lastName': 'Bennett',
+        meta: {
+          size: "321",
+          canFly: false
+        }
+      });
+
+      done(null, json);
+    });
+  });
+
 });
